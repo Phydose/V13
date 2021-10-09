@@ -1,9 +1,12 @@
 const { Collection, Client, Discord, MessageEmbed, Intents, Options} = require('discord.js')
-const { Handler } = require(`${__dirname}/Home/Classes/Handler`)
+const express = require("express")
+const app = express()
 const chalk = require('chalk')
+global.HOME = __dirname
 require("dotenv").config()
-const client = new Client({
-	makeCache: Options.cacheEverything(),
+
+const client = new Client ({
+  makeCache: Options.cacheEverything(),
     intents: [
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.GUILD_MESSAGES,
@@ -19,16 +22,26 @@ const client = new Client({
 partials: ["CHANNEL"]
 })
 client.config = require(`${HOME}/config.json`)
+exports.client = client
 require('figlet')("DjS", (err, data) => console.log(data))
 client.login(process.env.token || client.config.token)
-exports.client = client
-global.HOME = __dirname
+
+
 client.commands = new Collection()
 client.aliases = new Collection()
 
+const { Handler } = require(`${__dirname}/Home/Classes/Handler`)
 Handler.loadCommands(client)    // COMMAND HANDLER
 Handler.loadEvents(client)     // EVENT HANDLER
 Handler.loadButtons(client)     // BUTTON HANDLER
 Handler.loadSelectMenus(client)     // SELECTMENUS HANDLER
 Handler.getSlashCount() // TO GET SLASH COUNT.
-Handler.loadErrorManager(client)     // ERRORHANDLER HANDLER
+Handler.loadErrorManager(client)
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + '/Home/Classes/web.html');
+})
+
+app.listen(3000, () => {
+  console.log("[Uptime] Online !")
+})     // ERRORHANDLER HANDLERent)     // ERRORHANDLER HANDLER

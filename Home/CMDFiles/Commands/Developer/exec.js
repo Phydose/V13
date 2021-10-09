@@ -15,7 +15,7 @@ module.exports = {
                 let response = (error || stdout)
                 if (error) {
                     const erro = new Discord.MessageEmbed()
-                        .setColor('RANDOM')
+                        .setColor('FF0000')
                         .setTitle('🎄╎Terminal')
                         .setDescription(`\`\`\`kt
 ${error.message}\`\`\``)
@@ -23,7 +23,7 @@ ${error.message}\`\`\``)
                     message.channel.send({ embeds:[erro], components: [row] })
                 } else {
                     const result = new Discord.MessageEmbed()
-                        .setColor('RANDOM')
+                    	  .setColor(client.config.color)
                         .setTitle('🎄╎Terminal')
                         .setDescription(`\`\`\`kt
 ${response}\`\`\``)

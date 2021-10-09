@@ -15,7 +15,7 @@ new Discord.MessageButton()
    try{
        const evaled = eval(evalcommand)                      
        let evalembed = new Discord.MessageEmbed()
-       .setColor('RANDOM')
+	     .setColor(client.config.color)
        .setTitle('🎄╎ Evaluated')
        .addField("📬╎ Input", `\`\`\`kt\n${evalcommand}\`\`\``)
        .addField("📡╎ Output",`\`\`\`kt\n${inspect(evaled, { depth: 0})}\`\`\``)
@@ -24,7 +24,7 @@ new Discord.MessageButton()
    } catch (error){
        let embed1 = new Discord.MessageEmbed()
        .setTitle('Evaluation Error!')
-       .setColor("RANDOM")
+       .setColor("FF0000")
        .addField("❌╎ Error",`${error}`)
        message.channel.send({ embeds: [embed1], components: [row] })
    }

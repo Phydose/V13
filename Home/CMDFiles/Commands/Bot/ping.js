@@ -2,7 +2,7 @@ module.exports = {
     name : 'ping',
     run : async(client, message, args, Discord) => {
         const ping = new Discord.MessageEmbed()
-	.setColor('RANDOM')
+	.setColor(client.config.color)
 	.setTimestamp()
         .setTitle('🏓╎Pong!')
 	.setDescription(`🏠╎Websocket Latency: ${client.ws.ping}ms\n🤖╎Bot Latency: ${Date.now() - message.createdTimestamp}ms`);

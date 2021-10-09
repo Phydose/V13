@@ -3,10 +3,10 @@ module.exports = {
 	description: "My ping!",
 	run: async(client, interaction, Discord) => {
         const ping = new Discord.MessageEmbed()
-	.setColor('RANDOM')
+	.setColor(client.config.color)
 	.setTimestamp()
         .setTitle('🏓╎Pong!')
-	.setDescription(`🏠╎Websocket Latency: ${client.ws.ping}ms\n🤖╎Bot Latency: ${Date.now() - slash.createdTimestamp}ms`);
+	.setDescription(`🏠╎Websocket Latency: ${client.ws.ping}ms\n🤖╎Bot Latency: ${Date.now() - interaction.createdTimestamp}ms`);
 	interaction.reply({ embeds: [ping] })
 		}
 	}
